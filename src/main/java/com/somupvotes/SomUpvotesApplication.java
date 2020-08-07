@@ -7,7 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SomUpvotesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SomUpvotesApplication.class, args);
+		try {
+			SpringApplication.run(SomUpvotesApplication.class, args);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-
 }
