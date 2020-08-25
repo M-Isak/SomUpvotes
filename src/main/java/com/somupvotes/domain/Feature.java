@@ -3,6 +3,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Feature {
@@ -13,8 +14,11 @@ public class Feature {
     private String title;
     private String description;
     private String status;
+   @ManyToOne
+    private Product products;
 
-    public Long getId() {
+
+	public Long getId() {
         return id;
     }
 
@@ -45,4 +49,13 @@ public class Feature {
     public void setStatus(String status) {
         this.status = status;
     }
+
+	public Product getProducts() {
+		return products;
+	}
+
+	public void setProducts(Product products) {
+		this.products = products;
+	}
+    
 }
