@@ -1,8 +1,26 @@
 <html>
 <head>
-   <title>SOMALI Upvotes Hompage</title>
+<script th:replace="fragments/header :: headerElement"></script>
+   <title>SOMALI Upvotes Hompage</title> 
 </head>
 <body>
-<hi1> Welcome to SOMALI  Upvotes</hi1>
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+<div class="row"  style="margin-top: 2em">
+<div class="col-8">
+<h1> Welcome to SomUpvotes Homepage</h1>
+</div>
+
+<!-- <div class="col-4">
+<button class="btn btn-md btn-primary float-right" id="login">Login</button>
+</div>
+</div>
+</div>
+  <script type="text/javascript">
+  let loginBtn = document.getElementById('login')
+  loginBtn.addEventListener('click', function(){
+	  window.location.href = '/login'
+  });
+  </script> -->
 </body>
 </html>
