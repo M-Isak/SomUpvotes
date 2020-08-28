@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">>
+<head>
+</head>
+<body>
+<p th:fragment="headerElement" th:remove="tag">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+ <script
+  src="https://code.jquery.com/jquery-3.5.1.slim.js"integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+</p>
+
+<div th:fragment="header">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+		  <a class="navbar-brand" href="/"><img src="/images/Som_UpVotes_Logo.png"/></a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarText">
+		  <ul sec:authorize="isAuthenticated()" class="navbar-nav mr-auto">
+		  <li class="nav-item">
+		  <a class="nav-link" href="/dashboard">Dashboard</a>
+		  </li>
+		  </ul>
+		    <div class="navbar-nav ml-auto">
+		    <div sec:authorize="!isAuthenticated()">
+		    <button class="btn btn-primary" id="loginBtn">Log in</button>
+		    <script type="text/javascript">
+		    $(function(){
+		    	$("#loginBtn").click( function(){
+		    		window.location.href = ' /login '
+		    	})
+		    });
+		    </script>
+		    	</div>
+		    <div sec:authorize="isAuthenticated()">
+	        <form action="/logout" method="post" class="float-right">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+			<button type="submit" class="btn btn-danger">Logout</button>
+			</form>
+		
+			</div>
+			</div>
+		  </div>
+		</nav>
+
+</div>
+</body>
+</html>
