@@ -1,5 +1,7 @@
 package com.somupvotes.web;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -14,7 +16,11 @@ import com.somupvotes.domain.Product;
 import com.somupvotes.domain.User;
 import com.somupvotes.repository.ProductRepo;
 
+
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class ProductController {
 	
+	private Logger log = LoggerFactory.getLogger(ProductController.class);
 	@Autowired
 	private ProductRepo productRepo;
 
@@ -43,6 +50,29 @@ public class ProductController {
 		 return "product";
 	 }
 		return "product";
+	}
+	
+	@GetMapping("/p/{productName}")
+	public String productUserView(@PathVariable String productName, ModelMap model) {
+		
+		if (productName != null) {
+			
+		try {
+		String decodedProductName	= URLDecoder.decode(productName, StandardCharsets.UTF_8.name());
+		Optional<Product>   productOpt = productRepo.findByName(decodedProductName);
+		
+		if (productOpt.isPresent()) {
+			
+			model.put("product", productOpt.get());
+		}
+		
+		} catch (UnsupportedEncodingException e) {
+		log.error("There is an error decoding the product url", e);
+		}
+		
+		}
+		
+		return "productUserView";
 	}
 	
 	

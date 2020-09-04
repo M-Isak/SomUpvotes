@@ -15,7 +15,9 @@ public class Feature {
     private String description;
     private String status;
    @ManyToOne
-    private Product products;
+    private Product product;
+   @ManyToOne
+    private User user;
 
 
 	public Long getId() {
@@ -50,12 +52,22 @@ public class Feature {
         this.status = status;
     }
 
-	public Product getProducts() {
-		return products;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProducts(Product products) {
-		this.products = products;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
     
 }

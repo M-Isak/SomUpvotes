@@ -19,7 +19,7 @@ public class Product {
 	private String name;
 	@ManyToOne
 	private User user;
-	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="products")
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="product")
 	private Set<Feature> features = new HashSet<>();
 	
 	private Boolean published;
